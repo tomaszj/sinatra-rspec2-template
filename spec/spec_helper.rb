@@ -2,6 +2,7 @@ require 'app'
 require 'rspec'
 require 'capybara/rspec'
 require 'rack/test'
+require 'factory_girl'
 
 set :environment, :test
 

@@ -13,3 +13,6 @@ get "/questions/:id" do |id|
   erb :"questions/show"
 end
 
+post "/questions" do
+  
+end

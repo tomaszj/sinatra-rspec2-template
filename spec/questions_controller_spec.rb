@@ -14,18 +14,29 @@ describe "Questions RESTful API" do
   end
   
   describe "Show question" do
-    before(:each) do
-      @question = FactoryGirl.create(:question)
+    
+    describe "Success" do
+      before(:each) do
+        @question = FactoryGirl.create(:question)
+      end
+    
+      it "should be succesful" do
+        visit "/questions/#{@question.id}"
+      end
+    
+      it "should display a question" do
+        visit "/questions/#{@question.id}"
+        page.should have_content(@question.question)
+      end
     end
     
-    it "should be succesful" do
-      visit "/questions/#{@question.id}"
+    describe "Failure" do
+      it "should display 404 with wrong ID" do
+        get "/questions/115"
+        last_response.status.should == 404
+      end
     end
     
-    it "should display a question" do
-      visit "/questions/#{@question.id}"
-      page.should have_content(@question.question)
-    end
   end
   
   describe "New question" do
@@ -63,6 +74,13 @@ describe "Questions RESTful API" do
       put "/questions/#{@question.id}", :question => @attr
       question.reload!
       question.question.should == @attr[:question]
+    end
+    
+    describe "Failure" do
+      it "should display 404 with wrong ID" do
+        get "/questions/#{@question.id + 2}/edit"
+        last_response.status.should == 404
+      end
     end
   end
   

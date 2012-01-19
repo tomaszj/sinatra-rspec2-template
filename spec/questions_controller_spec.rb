@@ -28,6 +28,12 @@ describe "Questions RESTful API" do
     end
   end
   
+  describe "New question" do
+    it "should be succesful" do
+      visit "/questions/new"
+    end
+  end
+  
   describe "Add question" do
     it "should be succesful" do
       post "/questions"

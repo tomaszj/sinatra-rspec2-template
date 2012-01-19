@@ -21,3 +21,15 @@ require 'controllers/questions_controller'
 get "/" do
   "Hello World!"
 end
+
+not_found do
+  "404!"
+end
+
+error DataMapper::ObjectNotFoundError do
+  not_found
+end
+
+error do
+  "500!"
+end

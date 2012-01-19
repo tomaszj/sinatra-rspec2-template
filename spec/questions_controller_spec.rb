@@ -1,6 +1,11 @@
 require "spec_helper"
 
 describe "Questions RESTful API" do
+  
+  before(:each) do
+    puts "Question count: #{Question.count}"
+  end
+  
   describe "Questions list" do
     it "should load a list of questions" do
       visit "/questions"
@@ -9,16 +14,17 @@ describe "Questions RESTful API" do
   end
   
   describe "Show question" do
-    it "should display a question"
+    it "should display a question" do
       question = FactoryGirl.create(:question)
       
       visit "/questions/#{question.id}"
       page.should have_content(question.question)
+    end
   end
   
   describe "Add question" do
     it "should add a valid question" do
-      @attr = {:question => "Question content"}
+      @attr = FactoryGirl.build(:question).attributes
       post "/questions", :question => @attr
       Question.count.should == 1
       page.should have_content(question.question)

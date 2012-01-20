@@ -4,7 +4,8 @@ describe "Questions RESTful API" do
   
   describe "Questions list" do
     it "should be succesful" do
-      visit "/questions"
+      get "/questions"
+      last_response.should be_ok
     end
     
     it "should display a list of questions" do
@@ -21,7 +22,8 @@ describe "Questions RESTful API" do
       end
     
       it "should be succesful" do
-        visit "/questions/#{@question.id}"
+        get "/questions/#{@question.id}"
+        last_response.should be_ok
       end
     
       it "should display a question" do
@@ -41,7 +43,8 @@ describe "Questions RESTful API" do
   
   describe "New question" do
     it "should be succesful" do
-      visit "/questions/new"
+      get "/questions/new"
+      last_response.should be_ok
     end
   end
   
@@ -65,7 +68,8 @@ describe "Questions RESTful API" do
     end
     
     it "should be succesful" do
-      visit "/questions/#{@question.id}/edit"
+      get "/questions/#{@question.id}/edit"
+      last_response.should be_ok
     end
     
     it "should change the question content" do

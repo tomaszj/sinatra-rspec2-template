@@ -63,20 +63,23 @@ describe "Questions RESTful API" do
   end
   
   describe "Edit question" do
-    before(:each) do
-      @question = FactoryGirl.create(:question)
-    end
     
-    it "should be succesful" do
-      get "/questions/#{@question.id}/edit"
-      last_response.should be_ok
-    end
+    describe "Success" do
+      before(:each) do
+        @question = FactoryGirl.create(:question)
+      end
+      
+      it "should be succesful" do
+        get "/questions/#{@question.id}/edit"
+        last_response.should be_ok
+      end
     
-    it "should change the question content" do
-      @attr = {:question => "Changed question"}
-      put "/questions/#{@question.id}", :question => @attr
-      question.reload!
-      question.question.should == @attr[:question]
+      it "should change the question content" do
+        @attr = {:question => "Changed question"}
+        put "/questions/#{@question.id}", :question => @attr
+        question.reload!
+        question.question.should == @attr[:question]
+      end
     end
     
     describe "Failure" do

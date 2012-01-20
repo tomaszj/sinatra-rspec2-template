@@ -1,0 +1,15 @@
+<form action="<%= question.id.nil? ? "/questions" : "/questions/#{question.id}" %>" method="post" accept-charset="utf-8">
+	<p>
+		<label for="question[question]">Title:</label>
+		<input type="text" name="question[question]" id="question[question]" value="<%= question.question %>"/>
+	</p>
+	
+	<% if question.id.nil? %>
+		<p><input type="submit"></p>
+	<% else %>
+		<div style="margin:0;padding:0;">
+  		<input type="hidden" name="_method" value="put" id="_method">
+  	</div>
+		<p><input type="submit"></p>
+	<% end %>
+</form>

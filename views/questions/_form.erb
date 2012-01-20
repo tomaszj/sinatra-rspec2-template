@@ -1,4 +1,4 @@
-<form action="<%= question.id.nil? ? "/questions" : "/questions/#{question.id}" %>" method="post" accept-charset="utf-8">
+<form action="<%= question.id.nil? ? questions_path : question_path(question.id) %>" method="post" accept-charset="utf-8">
 	<p>
 		<label for="question[question]">Title:</label>
 		<input type="text" name="question[question]" id="question[question]" value="<%= question.question %>"/>

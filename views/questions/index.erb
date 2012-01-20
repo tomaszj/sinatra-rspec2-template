@@ -1,1 +1,19 @@
 <h1>Questions</h1>
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr>
+		<th>Question</th>
+		<th></th>
+		<th></th>
+	</tr>
+
+<% @questions.each do |question| %>
+	<tr>
+		<td><%= question.question %></td>
+		<td><%= link_to "Show", question_path(question.id) %></td>
+		<td><%= link_to	"Edit", edit_question_path(question.id) %></td>
+	</tr>
+<% end %>
+</table>
+
+<%= link_to "Add new question", new_question_path %>

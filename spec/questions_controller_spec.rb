@@ -9,9 +9,13 @@ describe "Questions RESTful API" do
     end
     
     it "should display a list of questions" do
+      question = FactoryGirl.create(:question)
+
       visit "/questions"
       page.should have_content("Questions")
+      page.should have_content(question.question)
     end
+    
   end
   
   describe "Show question" do
@@ -103,7 +107,7 @@ describe "Questions RESTful API" do
     
     describe "Failure" do
       it "should display 404 with wrong ID" do
-        get "/questions/#{@question.id + 2}/edit"
+        get "/questions/115/edit"
         last_response.status.should == 404
       end
     end

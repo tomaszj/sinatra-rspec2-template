@@ -56,7 +56,6 @@ describe "Questions RESTful API" do
       expect {
         post "/questions", :question => @attr
       }.to change(Question, :count).by(1)
-      page.should have_content(@attr[:question])
     end
   end
   

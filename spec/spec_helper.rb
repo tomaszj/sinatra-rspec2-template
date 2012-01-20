@@ -14,6 +14,14 @@ end
 
 Capybara.app = app
 
+# This overrides ok? method, to allow 302 redirection.
+Rack::Response::Helpers.module_eval do
+  def ok?
+    @status == 200 or self.redirect?
+  end
+end
+# End of patch
+
 RSpec.configure do |conf|
   conf.include Rack::Test::Methods
   conf.include Capybara::DSL

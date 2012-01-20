@@ -14,5 +14,10 @@ get "/questions/:id" do |id|
 end
 
 post "/questions" do
-  
+  question = Question.create(params[:question])
+  if question.save
+    redirect "/questions/#{question.id}"
+  else
+    redirect "/questions/new"
+  end
 end

@@ -46,6 +46,13 @@ describe "Questions RESTful API" do
       get "/questions/new"
       last_response.should be_ok
     end
+    
+    it "should add a question with valid fields using form" do
+      visit "/questions/new"
+      fill_in :question, :with => "Question content"
+      click_button "Save"
+      page.should have_content "Question content"
+    end
   end
   
   describe "Add question" do
@@ -84,6 +91,13 @@ describe "Questions RESTful API" do
         put "/questions/#{@question.id}", :question => @attr
         @question.reload
         @question.question.should == @attr[:question]
+      end
+      
+      it "should change the question content using form" do
+        visit "/questions/#{@question.id}/edit"
+        fill_in :question, :with => "New question"
+        click_button "Save"
+        page.should have_content "New question"
       end
     end
     

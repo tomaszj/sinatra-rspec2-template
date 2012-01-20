@@ -11,6 +11,11 @@ configure do
   DataMapper.auto_upgrade!
 end
 
+configure :production do
+  set :show_exceptions, false
+  set :raise_errors, false
+end
+
 helpers do
   # Allow partial functionality
   def partial(template, locals = {})
@@ -30,7 +35,7 @@ get "/" do
 end
 
 not_found do
-  "404!"
+  erb :'404'
 end
 
 error DataMapper::ObjectNotFoundError do
@@ -38,5 +43,5 @@ error DataMapper::ObjectNotFoundError do
 end
 
 error do
-  "500!"
+  erb :'500'
 end

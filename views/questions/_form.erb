@@ -5,11 +5,11 @@
 	</p>
 	
 	<% if question.id.nil? %>
-		<p><input type="submit"></p>
+		<p><input type="submit" value="Save"></p>
 	<% else %>
 		<div style="margin:0;padding:0;">
   		<input type="hidden" name="_method" value="put" id="_method">
   	</div>
-		<p><input type="submit"></p>
+		<p><input type="submit" value="Save"></p>
 	<% end %>
 </form>

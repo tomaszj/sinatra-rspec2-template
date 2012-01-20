@@ -77,8 +77,8 @@ describe "Questions RESTful API" do
       it "should change the question content" do
         @attr = {:question => "Changed question"}
         put "/questions/#{@question.id}", :question => @attr
-        question.reload!
-        question.question.should == @attr[:question]
+        @question.reload
+        @question.question.should == @attr[:question]
       end
     end
     

@@ -16,6 +16,13 @@ configure do
   DataMapper.auto_upgrade!
 end
 
+helpers do
+  # Allow partial functionality
+  def partial(template, locals = {})
+    erb(template, :layout => false, :locals => locals)
+  end
+end
+
 require 'controllers/questions_controller'
 
 get "/" do

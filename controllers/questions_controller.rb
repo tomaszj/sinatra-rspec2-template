@@ -18,6 +18,16 @@ get "/questions/:id/edit" do |id|
   erb :"questions/edit"
 end
 
+put "/questions/:id" do |id|
+  @question = Question.get!(id)
+  if @question.update(params[:question] || {})
+    redirect "/questions/#{id}"
+  else
+    redirect "/questions/#{id}/edit"
+  end
+    
+end
+
 post "/questions" do
   question = Question.create(params[:question])
   if question.save
@@ -25,4 +35,10 @@ post "/questions" do
   else
     redirect "/questions/new"
   end
+end
+
+delete "/questions/:id" do |id|
+  question = Question.get!(id)
+  question.destroy
+  redirect "/questions"
 end

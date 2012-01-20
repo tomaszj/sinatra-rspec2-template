@@ -16,8 +16,13 @@ helpers do
   def partial(template, locals = {})
     erb(template, :layout => false, :locals => locals)
   end
+  
+  # Load helpers from helpers.rb
+  require 'helpers'
+  
 end
 
+# Load Questions controller code
 require 'controllers/questions_controller'
 
 get "/" do

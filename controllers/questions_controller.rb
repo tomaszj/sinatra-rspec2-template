@@ -13,6 +13,11 @@ get "/questions/:id" do |id|
   erb :"questions/show"
 end
 
+get "/questions/:id/edit" do |id|
+  @question = Question.get!(id)
+  erb :"questions/edit"
+end
+
 post "/questions" do
   question = Question.create(params[:question])
   if question.save

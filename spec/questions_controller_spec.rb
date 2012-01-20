@@ -69,11 +69,16 @@ describe "Questions RESTful API" do
         @question = FactoryGirl.create(:question)
       end
       
-      it "should be succesful" do
+      it "should succesfully load edit form" do
         get "/questions/#{@question.id}/edit"
         last_response.should be_ok
       end
-    
+      
+      it "should be succesful" do
+        put "/questions/#{@question.id}"
+        last_response.should be_ok
+      end
+      
       it "should change the question content" do
         @attr = {:question => "Changed question"}
         put "/questions/#{@question.id}", :question => @attr
@@ -104,6 +109,11 @@ describe "Questions RESTful API" do
       expect {
         delete "/questions/#{@question.id}"
       }.to change(Question, :count).by(-1)
+    end
+    
+    it "should redirect after delete" do
+      delete "/questions/#{@question.id}"
+      last_response.should be_redirect
     end
   end
 end

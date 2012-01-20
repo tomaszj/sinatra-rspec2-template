@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'data_mapper'
 
+use Rack::MethodOverride
+
 configure do
   DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/data/database.db")
   
